@@ -37,10 +37,6 @@ public class MenuView extends javax.swing.JFrame {
         return bt_busca_musica;
     }
 
-    public JButton getBt_curtidas() {
-        return bt_curtidas;
-    }
-
     public JButton getBt_historico() {
         return bt_historico;
     }
@@ -59,10 +55,6 @@ public class MenuView extends javax.swing.JFrame {
 
     public void setBt_busca_musica(JButton bt_busca_musica) {
         this.bt_busca_musica = bt_busca_musica;
-    }
-
-    public void setBt_curtidas(JButton bt_curtidas) {
-        this.bt_curtidas = bt_curtidas;
     }
 
     public void setBt_historico(JButton bt_historico) {
@@ -94,7 +86,6 @@ public class MenuView extends javax.swing.JFrame {
 
         txt_pesquisa_musica = new javax.swing.JTextField();
         bt_busca_musica = new javax.swing.JButton();
-        bt_curtidas = new javax.swing.JButton();
         bt_historico = new javax.swing.JButton();
         bt_playlists = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -113,9 +104,12 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
 
-        bt_curtidas.setText("Curtidas");
-
         bt_historico.setText("Histórico");
+        bt_historico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_historicoActionPerformed(evt);
+            }
+        });
 
         bt_playlists.setText("Playlists");
 
@@ -163,18 +157,19 @@ public class MenuView extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(70, 70, 70)
-                                .addComponent(bt_curtir, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(bt_playlists, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(bt_curtir, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(27, 27, 27)))
                                 .addGap(30, 30, 30)
-                                .addComponent(bt_descurtir, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(bt_curtidas, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bt_playlists, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bt_historico, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(bt_historico, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(bt_descurtir, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(30, 30, 30)))))))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,7 +187,6 @@ public class MenuView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bt_playlists, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bt_curtidas, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bt_historico, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -211,6 +205,13 @@ public class MenuView extends javax.swing.JFrame {
     private void bt_descurtirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_descurtirActionPerformed
         controller.descurtirMusica(idUsuario);
     }//GEN-LAST:event_bt_descurtirActionPerformed
+
+    private void bt_historicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_historicoActionPerformed
+        HitoricoView historico = new HitoricoView();
+        historico.carregarHistorico(idUsuario);
+        historico.setVisible(true);
+
+    }//GEN-LAST:event_bt_historicoActionPerformed
 
     private int idUsuario;
     
@@ -269,7 +270,6 @@ public class MenuView extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_busca_musica;
-    private javax.swing.JButton bt_curtidas;
     private javax.swing.JButton bt_curtir;
     private javax.swing.JButton bt_descurtir;
     private javax.swing.JButton bt_historico;

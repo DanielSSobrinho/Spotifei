@@ -12,6 +12,7 @@ import spotifei.View.MenuView;
 import javax.swing.JOptionPane;
 import spotifei.Dao.CurtidaDAO;
 import spotifei.Dao.DescurtidaDAO;
+import spotifei.Dao.HistoricoDAO;
 /**
  *
  * @author daniel.sobrinho
@@ -39,6 +40,12 @@ public class ControllerMenu {
                 m.getGenero()
             });
         }
+        
+        HistoricoDAO historicoDAO = new HistoricoDAO();
+        for (Musica m : lista) {
+            historicoDAO.registrarBusca(view.getIdUsuario(), m.getId());
+        }
+
     }
     
     public void curtirMusica(int idUsuario) {

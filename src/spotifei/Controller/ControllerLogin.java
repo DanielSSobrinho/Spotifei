@@ -39,11 +39,7 @@ public class ControllerLogin {
                                               "Login efetuado!", 
                                               "Aviso",
                                               JOptionPane.INFORMATION_MESSAGE);
-                //Usuario usuario2 = new Usuario(res.getString("nome"), 
-                                         //res.getString("usuario"), 
-                                         //res.getString("senha"));
-                //AltExcView aec = new AltExcView(usuario2);
-                //aec.setVisible(true);
+             
                 MenuView menu = new MenuView();
                 menu.setIdUsuario(res.getInt("id"));
                 menu.setVisible(true);
