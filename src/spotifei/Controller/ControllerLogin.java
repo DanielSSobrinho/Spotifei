@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import spotifei.Model.Usuario;
 import spotifei.View.LoginView;
+import spotifei.View.MenuView;
 
 /**
  *
@@ -43,6 +44,10 @@ public class ControllerLogin {
                                          //res.getString("senha"));
                 //AltExcView aec = new AltExcView(usuario2);
                 //aec.setVisible(true);
+                MenuView menu = new MenuView();
+                menu.setIdUsuario(res.getInt("id"));
+                menu.setVisible(true);
+
             } else{
                 JOptionPane.showMessageDialog(view, 
                                               "Login NÃO efetuado!", 

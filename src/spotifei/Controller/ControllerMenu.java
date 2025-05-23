@@ -9,6 +9,8 @@ import javax.swing.table.DefaultTableModel;
 import spotifei.Dao.MusicaDAO;
 import spotifei.Model.Musica;
 import spotifei.View.MenuView;
+import javax.swing.JOptionPane;
+import spotifei.Dao.CurtidaDAO;
 /**
  *
  * @author daniel.sobrinho
@@ -36,6 +38,19 @@ public class ControllerMenu {
                 m.getGenero()
             });
         }
+    }
+    
+    public void curtirMusica(int idUsuario) {
+        int idMusica = view.getIdMusicaSelecionada();
+        if (idMusica == -1) {
+            JOptionPane.showMessageDialog(view, "Selecione uma música para curtir.");
+            return;
+        }
+
+        CurtidaDAO dao = new CurtidaDAO();
+        dao.curtirMusica(idUsuario, idMusica);
+
+        JOptionPane.showMessageDialog(view, "Música curtida com sucesso!");
     }
     
 }

@@ -99,6 +99,7 @@ public class MenuView extends javax.swing.JFrame {
         bt_playlists = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela_resultados = new javax.swing.JTable();
+        bt_curtir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -131,6 +132,13 @@ public class MenuView extends javax.swing.JFrame {
         tabela_resultados.setDragEnabled(true);
         jScrollPane1.setViewportView(tabela_resultados);
 
+        bt_curtir.setText("Curtir Música");
+        bt_curtir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_curtirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -144,15 +152,17 @@ public class MenuView extends javax.swing.JFrame {
                         .addComponent(bt_busca_musica, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(17, 17, 17)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(bt_curtir, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(bt_curtidas, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(bt_historico, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addComponent(bt_playlists, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(bt_curtidas, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(77, 77, 77)
-                        .addComponent(bt_historico, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(128, 128, 128)
+                        .addComponent(bt_playlists, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -167,10 +177,11 @@ public class MenuView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bt_historico, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bt_curtidas, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(bt_curtidas, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bt_curtir, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
                 .addComponent(bt_playlists, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9))
+                .addContainerGap())
         );
 
         pack();
@@ -179,6 +190,29 @@ public class MenuView extends javax.swing.JFrame {
     private void bt_busca_musicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_busca_musicaActionPerformed
         controller.buscarMusicas();
     }//GEN-LAST:event_bt_busca_musicaActionPerformed
+
+    private void bt_curtirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_curtirActionPerformed
+        controller.curtirMusica(idUsuario);
+    }//GEN-LAST:event_bt_curtirActionPerformed
+
+    private int idUsuario;
+    
+    public void setIdUsuario(int id) {
+        this.idUsuario = id;
+    }
+    
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+    
+    public int getIdMusicaSelecionada() {
+        int linha = tabela_resultados.getSelectedRow();
+        if (linha == -1) return -1;
+        return (int) tabela_resultados.getValueAt(linha, 0);
+    }
+
+
+
 
     /**
      * @param args the command line arguments
@@ -219,6 +253,7 @@ public class MenuView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_busca_musica;
     private javax.swing.JButton bt_curtidas;
+    private javax.swing.JButton bt_curtir;
     private javax.swing.JButton bt_historico;
     private javax.swing.JButton bt_playlists;
     private javax.swing.JScrollPane jScrollPane1;
