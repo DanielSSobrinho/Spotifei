@@ -11,6 +11,7 @@ import spotifei.Model.Musica;
 import spotifei.View.MenuView;
 import javax.swing.JOptionPane;
 import spotifei.Dao.CurtidaDAO;
+import spotifei.Dao.DescurtidaDAO;
 /**
  *
  * @author daniel.sobrinho
@@ -51,6 +52,19 @@ public class ControllerMenu {
         dao.curtirMusica(idUsuario, idMusica);
 
         JOptionPane.showMessageDialog(view, "Música curtida com sucesso!");
+    }
+    
+    public void descurtirMusica(int idUsuario) {
+        int idMusica = view.getIdMusicaSelecionada();
+        if (idMusica == -1) {
+            JOptionPane.showMessageDialog(view, "Selecione uma música para descurtir.");
+            return;
+        }
+
+        DescurtidaDAO dao = new DescurtidaDAO();
+        dao.descurtirMusica(idUsuario, idMusica);
+
+        JOptionPane.showMessageDialog(view, "Música descurtida com sucesso!");
     }
     
 }
