@@ -112,6 +112,11 @@ public class MenuView extends javax.swing.JFrame {
         });
 
         bt_playlists.setText("Playlists");
+        bt_playlists.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_playlistsActionPerformed(evt);
+            }
+        });
 
         tabela_resultados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -212,6 +217,11 @@ public class MenuView extends javax.swing.JFrame {
         historico.setVisible(true);
 
     }//GEN-LAST:event_bt_historicoActionPerformed
+
+    private void bt_playlistsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_playlistsActionPerformed
+        PlaylistView tela = new PlaylistView(idUsuario);
+        tela.setVisible(true);
+    }//GEN-LAST:event_bt_playlistsActionPerformed
 
     private int idUsuario;
     
